@@ -1,0 +1,73 @@
+<?php
+session_start();
+// print_r($_SESSION['session_user']);
+?>
+<!DOCTYPE html> 
+<html> 
+	<head>
+	<title>FaceBook Auto Post</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.1.0.min.css" />
+	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery.mobile-1.1.0.min.js"></script>
+	<link rel="stylesheet" href="css/front_end.css" />
+	<script>
+	$(document).ready(function(){
+		console.log('The DOM is ready.');
+		$('.tooltip').hide();
+		$('.tooltip').each( function() {
+			$(this).prev().focus( function() {
+				$(this).nextAll('.tooltip').show('fast');
+			}).blur( function() {
+				// $(this).nextAll('.tooltip').hide('fast');
+			});
+		});
+	});
+	function back(){
+		window.location.href="main.php";
+	}
+	function save(){
+		if ($('#group_id').val() == ""){
+			alert("Group ID's Filed Empty");
+			return false;
+		}
+		var data = {
+			groupID: $('#group_id').val()
+		};
+		var jdata = JSON.stringify(data);
+		$.post('ajax.php',{data:jdata,submit:'edit'},function(rdata){
+			if (rdata == 1){
+				alert ("Group Added Successfully");
+				location.reload();
+				$('#group_id').val("");
+			}else{
+				alert ("Please check Group ID's data");
+			}
+			// redrawContacts(rdata);
+		});
+	}
+	</script>
+</head> 
+<body> 
+
+<div data-role="page" data-theme="b">
+
+	<div data-role="header" data-theme="a">
+		<h1>First Mobile UI</h1>
+	</div><!-- /header -->
+	<div data-role="content">
+			<label for="textarea-a" placeholder="MyGroupId,">FB Group ID's:(Comma Separate)</label>
+			<textarea name="textarea" id="group_id" placeholder="MyGroupId,"></textarea>
+             <div class="tooltip" style="text-align: left;" >Ex : facebook.com/groups/MyGroupId</div>
+			<a href="" data-role="button" data-inline="true" data-theme="d" onclick = 'back()'>Back</a>
+			<input type="submit" name="submit" id="submit" value="Save" onclick='save()'data-inline="true"/>
+	</div><!-- /content -->
+
+	<!--<div data-role="footer" data-theme="b">
+		Need Help ?
+	</div>-->
+	<!-- /footer -->
+</div><!-- /page -->
+
+</body>
+</html>

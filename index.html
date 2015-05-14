@@ -1,0 +1,38 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>FaceBook Auto Post</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.1.0.min.css" />
+	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery.mobile-1.1.0.min.js"></script>
+</head> 
+<body> 
+
+<div data-role="page" data-theme="b">
+
+	<div data-role="header" data-theme="a">
+		<h1>First Mobile UI</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">
+		<form action="main.php" method="post" data-ajax="false">
+		<fieldset>
+			<label>Gmail ID (Primary Email in your FB Account):</label>
+			<input type="text" name="user_name" id="user_name" value="" placeholder="Enter your email" required/>
+			<label>Password (Gmail Password):</label>
+			<input type="password" name="password" id="password" value="" required/>
+			<input type="submit" name="submit" id="submit" value="Login"/>
+		</fieldset>
+		</form>
+		<a href="demo.php" data-role="button">Need Help ?</a> 
+	</div><!-- /content -->
+
+	<!--<div data-role="footer" data-theme="b">
+		Need Help ?
+	</div>-->
+	<!-- /footer -->
+</div><!-- /page -->
+
+</body>
+</html>
